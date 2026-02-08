@@ -1,0 +1,8 @@
+# python virtual environment files
+env
+
+# python cash files
+__pycache__
+
+# environment variables
+.env
