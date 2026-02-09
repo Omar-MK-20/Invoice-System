@@ -2,9 +2,9 @@ from enum import Enum
 from pydantic import BaseModel, Field, ConfigDict
 
 class ServiceCategory(str, Enum):
-    manufacturing = "Manufacturing"
-    spare_parts = "spare parts"
-    others = "Oils and other supplies"
+    manufacturing = "manufacturing"
+    spare_parts = "spare_parts"
+    others = "others"
 
 class ServiceCreate(BaseModel):
     name: str = Field(min_length=1, max_length=50)

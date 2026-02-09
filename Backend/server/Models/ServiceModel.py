@@ -5,9 +5,9 @@ import enum
 from typing import TYPE_CHECKING
 
 class Category(enum.Enum):
-    manufacturing = "Manufacturing"
-    spare_parts = "spare parts"
-    others = "Oils and other supplies"
+    manufacturing = "manufacturing"
+    spare_parts = "spare_parts"
+    others = "others"
 
 
 if TYPE_CHECKING:
