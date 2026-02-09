@@ -6,7 +6,6 @@ from sqlalchemy import String, Integer, DateTime, Date, Numeric, ForeignKey
 from zoneinfo import ZoneInfo
 
 egypt_timezone = ZoneInfo("Africa/Cairo")
-print(egypt_timezone)
 
 if (TYPE_CHECKING):
     from InvoiceItemModel import InvoiceItem
