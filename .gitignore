@@ -6,3 +6,9 @@ __pycache__
 
 # environment variables
 .env
+
+# vs code files 
+.vscode
+
+# node modules
+node_modules
