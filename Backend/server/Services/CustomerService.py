@@ -25,12 +25,22 @@ def createCustomer(customer: CustomerCreate, db: Session):
 
 
 def getCustomers(db: Session):
-    getCustomersStmt = select(Customer, Car).join(Customer.cars).options(selectinload(Customer.cars)).order_by(Customer.id)
+    getCustomersStmt = select(Customer).options(selectinload(Customer.cars)).order_by(Customer.id)
 
     customers = db.scalars(getCustomersStmt).all()
 
-    if (customers.__len__() == 0):
+    if (not customers):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail={"error": "no customers found"})
 
     return {"message": "success", "customers": customers}
 
+
+def getOneCustomer(customer_id: int, db: Session):
+    getCustomerStmt = select(Customer).where(Customer.id == customer_id).options(selectinload(Customer.cars))
+
+    customer = db.scalar(getCustomerStmt)
+    
+    if (not customer):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail={"error": "customer not found"})
+    
+    return {"message": "success", "customer": customer}
