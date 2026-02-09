@@ -1,12 +1,12 @@
+from typing import Optional
 from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
-from Schemas.ServiceSchema import ServiceRead
+from server.Schemas.ServiceSchema import ServiceRead
 
 
 class InvoiceItemCreate(BaseModel):
     service_id: int
     quantity: int = Field(gt=0)
-    price: float = Field(gt=0)
     discount: float = Field(default=0, ge=0)
 
 
@@ -24,8 +24,8 @@ class InvoiceItemRead(BaseModel):
 class InvoiceCreate(BaseModel):
     reception_engineer: str = Field(default="Omar Mohamed", min_length=1, max_length=50)
     invoice_no: str = Field(min_length=1, max_length=100)
-    invoice_date: date
-    customer_id: int
+    invoice_date: Optional[date | None] = Field(default= None)
+    customer_name: str
     car_id: int
     invoice_items: list[InvoiceItemCreate]
 
