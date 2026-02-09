@@ -30,7 +30,7 @@ def getServices(db: Session):
 
     services = db.scalars(getServicesStmt).all()
 
-    if(services.__len__() == 0):
+    if(not services):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail={"error":"no services found"})
     
     return {"message": "success", "services": services}
