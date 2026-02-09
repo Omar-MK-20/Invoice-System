@@ -3,10 +3,14 @@ from server.DB.connection import testDBConnection, Base, engine
 import server.Models
 import sys
 from server.Routers.customer import customerRouter
+from server.Routers.service import serviceRouter
+from server.Routers.car import carRouter
 
 server = FastAPI()
 
 server.include_router(customerRouter)
+server.include_router(serviceRouter)
+server.include_router(carRouter)
 
 if not testDBConnection():
     sys.exit(1)
