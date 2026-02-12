@@ -9,14 +9,14 @@ from server.Routers.service import serviceRouter
 from server.Routers.car import carRouter
 from server.Routers.invoice import invoiceRouter
 
-server = FastAPI()
+app = FastAPI()
 
 origins = [
     "http://localhost",
     "http://localhost:5173",
 ]
 
-server.add_middleware(
+app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
@@ -25,10 +25,10 @@ server.add_middleware(
 )
 
 
-server.include_router(customerRouter)
-server.include_router(serviceRouter)
-server.include_router(carRouter)
-server.include_router(invoiceRouter)
+app.include_router(customerRouter)
+app.include_router(serviceRouter)
+app.include_router(carRouter)
+app.include_router(invoiceRouter)
 
 if not testDBConnection():
     sys.exit(1)
@@ -41,7 +41,7 @@ except Exception as e:
     print(e)
 
 
-@server.get("/")
+@app.get("/")
 def hello():
     return {"Invoice System": "Hello form invoice system"}
 
