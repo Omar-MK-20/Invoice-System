@@ -15,6 +15,11 @@ The **Invoice System** is a web application for creating and managing invoices. 
 
 The backend exposes a REST API (FastAPI + SQLAlchemy) and uses a **MySQL** database. The frontend is a single-page app (React, React Router, HeroUI, Tailwind CSS) that consumes this API.
 
+### Live Deployment
+
+- **Frontend:** [https://invoice-system-frontend-two.vercel.app/](https://invoice-system-frontend-two.vercel.app/)
+- **Backend API (Swagger UI):** [https://invoice-system-umber.vercel.app/docs](https://invoice-system-umber.vercel.app/docs)
+
 ---
 
 ## Folder Structure
@@ -24,12 +29,14 @@ Invoice-System/
 ├── Backend/
 │   ├── .env                    # Environment variables (DATABASE_URL, etc.) — create from template below
 │   ├── requirements.txt        # Python dependencies
+│   ├── vercel.json             # Vercel configuration for deployment
 │   ├── query.sql               # SQL scripts (if any)
 │   └── server/
 │       ├── main.py             # FastAPI app entry point
 │       ├── DB/
-│       │   └── connection.py    # Database connection and session
+│       │   └── connection.py   # Database connection and session
 │       ├── Models/             # SQLAlchemy models
+│       │   ├── __init__.py
 │       │   ├── CarModel.py
 │       │   ├── CustomerModel.py
 │       │   ├── InvoiceModel.py
@@ -51,24 +58,51 @@ Invoice-System/
 │           ├── InvoiceService.py
 │           └── ServiceService.py
 ├── Frontend/
+│   ├── .env                    # Environment variables (e.g. API base URL)
+│   ├── .gitignore
 │   ├── package.json
 │   ├── package-lock.json
 │   ├── vite.config.ts
 │   ├── index.html
+│   ├── eslint.config.js
+│   ├── tsconfig.json
+│   ├── tsconfig.app.json
+│   ├── tsconfig.node.json
+│   ├── vercel.json             # Vercel configuration for deployment
+│   ├── README.md
 │   ├── public/
+│   │   └── vite.svg
 │   └── src/
 │       ├── main.tsx
 │       ├── App.tsx
 │       ├── index.css
+│       ├── hero.js
+│       ├── assets/
+│       │   └── react.svg
+│       ├── config/
+│       │   └── app.config.ts   # App configuration (API URL, etc.)
 │       ├── components/         # Reusable UI (e.g. NavBar)
+│       │   └── NavBar.tsx
 │       ├── interfaces/         # TypeScript types
-│       ├── pages/              # Route pages (Home, Invoices, CreateInvoice, etc.)
+│       │   ├── CarI.ts
+│       │   ├── CustomerI.ts
+│       │   ├── InvoiceI.ts
+│       │   ├── ResponseError.ts
+│       │   └── ServiceI.ts
+│       ├── pages/              # Route pages
+│       │   ├── HomePage.tsx
+│       │   ├── InvoicesPage.tsx
+│       │   ├── InvoiceDetailedPage.tsx
+│       │   ├── CreateInvoicePage.tsx
+│       │   └── NotFoundPage.tsx
 │       └── schemas/            # Validation (e.g. Zod)
+│           └── invoiceSchema.ts
 ├── Database/                   # ERD and schema diagrams
 │   ├── ERD.drawio
 │   ├── ERD.drawio.png
 │   ├── Schema.drawio
 │   └── Schema.drawio.png
+├── .gitignore
 └── README.md
 ```
 
