@@ -24,6 +24,7 @@ import
     createInvoiceSchema,
     type CreateInvoiceForm,
 } from "../schemas/invoiceSchema";
+import { ENDPOINT } from "../config/app.config";
 
 /* =======================
    Types
@@ -96,9 +97,10 @@ export default function CreateInvoicePage()
     {
         async function loadInitialData()
         {
+
             const [customersRes, servicesRes] = await Promise.all([
-                axios.get("http://localhost:8000/customers"),
-                axios.get("http://localhost:8000/services"),
+                axios.get(ENDPOINT + "customers"),
+                axios.get(ENDPOINT + "services"),
             ]);
 
             setCustomers(customersRes.data.customers);
@@ -123,7 +125,7 @@ export default function CreateInvoicePage()
             }
 
             const customersRes = await axios.get(
-                "http://localhost:8000/customers"
+                ENDPOINT + "customers"
             );
 
             const customer = customersRes.data.customers.find(
@@ -133,7 +135,7 @@ export default function CreateInvoicePage()
             if (!customer) return;
 
             const customerRes = await axios.get(
-                `http://localhost:8000/customers/${customer.id}`
+                ENDPOINT + `customers/${customer.id}`
             );
 
             setCars(customerRes.data.customer.cars);
@@ -151,7 +153,7 @@ export default function CreateInvoicePage()
         console.log("SUBMIT ✅", data);
         try
         {
-            const res = await axios.post("http://localhost:8000/invoices", data);
+            const res = await axios.post(ENDPOINT + "invoices", data);
             addToast({
                 title: res?.data?.message,
                 color: "success",

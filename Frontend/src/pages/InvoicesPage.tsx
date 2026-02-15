@@ -16,6 +16,7 @@ import axios, { AxiosError, type AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { type Invoice, type InvoicesResponse } from "../interfaces/InvoiceI";
+import { ENDPOINT } from "../config/app.config";
 
 export default function InvoicesList()
 {
@@ -41,7 +42,7 @@ export default function InvoicesList()
             try
             {
                 const res: AxiosResponse<InvoicesResponse> = await axios.get(
-                    "http://localhost:8000/invoices",
+                    ENDPOINT + "invoices",
                     {
                         signal,
                         params: {

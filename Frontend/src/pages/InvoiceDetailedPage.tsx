@@ -16,6 +16,7 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import type { InvoiceItem, InvoiceWithItems } from "../interfaces/InvoiceI";
+import { ENDPOINT } from "../config/app.config";
 
 
 
@@ -35,7 +36,7 @@ export default function InvoiceDetailedPage()
         try
         {
             const res = await axios.get(
-                `http://localhost:8000/invoices/${id}`
+                ENDPOINT + `invoices/${id}`
             );
             setInvoice(res.data.invoice);
         }
